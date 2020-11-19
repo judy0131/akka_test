@@ -2,7 +2,7 @@ package cn.bigdata
 
 import org.apache.http.client.config.RequestConfig
 import org.apache.http.client.methods.{CloseableHttpResponse, HttpPost}
-import org.apache.http.entity.StringEntity
+import org.apache.http.entity.{ByteArrayEntity, StringEntity}
 import org.apache.http.impl.client.HttpClientBuilder
 import org.apache.http.util.EntityUtils
 
@@ -19,16 +19,14 @@ object HttpClient_small {
     .setConnectionRequestTimeout(timeout * 1000)
     .setSocketTimeout(timeout * 1000).build()
 
-   val json="hello !!!!!!!!!11"
+   val json="hello !!!!!!!!!11hello !!!!!!!!!11hello !!!!!!!!!11hello !!!!!!!!!11hello !!!!!!!!!11hello !!!!!!!!!11hello !!!!!!!!!11"
 
     val client = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build()
 
 
     val post: HttpPost = new HttpPost(url)
-     post
-    .addHeader("Content-Type", "application/json")
-     post
-    .setEntity(new StringEntity(json))
+     post.addHeader("Content-Type", "application/json")
+     post.setEntity(new ByteArrayEntity(json.getBytes()))
 
 
 
